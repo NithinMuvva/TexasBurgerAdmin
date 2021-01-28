@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  mongodb_container:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./data/mongo:/data/db
+    networks:
+      - mynetwork
+  mysql_container:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_DATABASE=userdb
+    ports:
+      - 3306:3306
+    networks:
+      - mynetwork
+  app_container:
+    build: ./
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_USERNAME=test
+      - SPRING_DATASOURCE_PASSWORD=test   
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_container:3306/userdb?useSSL=false&allowPublicKeyRetrieval=true
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+      name: custom_network
