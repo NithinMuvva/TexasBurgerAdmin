@@ -1,12 +1,12 @@
-##Texas Burger Spring Boot Application
+## Texas Burger Spring Boot Application
 
 Added Swagger for better undersatding of API's: http://localhost:8080/v2/api-docs http://localhost:8080/swagger-ui.html 
 
-###PreReq:
+### PreReq:
 
 Download the project and run as Spring Boot App Please download MongoDb in your local and Start the MongoServer Update the application.properties if needed.
 
-###App Structure:
+### App Structure:
 
 **Model** : contains location, menu and reservation and open hours
 
